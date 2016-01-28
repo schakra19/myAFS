@@ -1,0 +1,109 @@
+// Copyright 2015, Google Inc.
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following disclaimer
+// in the documentation and/or other materials provided with the
+// distribution.
+//     * Neither the name of Google Inc. nor the names of its
+// contributors may be used to endorse or promote products derived from
+// this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+syntax = "proto3";
+
+option java_package = "io.grpc.examples";
+option objc_class_prefix = "HLW";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc myOpen(HelloRequest) returns (HelloReply){}
+  rpc myClose(HelloFlushRequest) returns(HelloReply){}
+  rpc myOpendir(HelloRequest) returns(HelloOpendir){}
+  rpc myReaddir(HelloDir)returns(HelloDirent){}
+  rpc myGetattr(HelloRequest) returns(HelloStat){}
+  rpc myReleasedir(HelloDir) returns(HelloReply){}
+  rpc myMkdir(HelloDirent) returns(HelloMkdirReply){}
+  rpc myRmdir(HelloRequest) returns(HelloMkdirReply){}
+  rpc myUnlink(HelloRequest) returns(HelloMkdirReply){}
+  rpc myMknod(HelloMknodRequest) returns(HelloMkdirReply){}
+
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+
+message HelloFlushRequest{
+  string path=1;
+  string content=2;
+}
+
+message HelloStat {
+  sfixed64 dev=1;
+  sfixed64 ino=2;
+  int32 mode=3;
+  sfixed64 nlink=4;
+  int32 uid=5;
+  int32 gid=6;
+  sfixed64 rdev=7;
+  sfixed64 size=8;
+  sfixed64 atime=9;
+  sfixed64 mtime=10;
+  sfixed64 ctime=11;
+  sfixed64 blksize=12;
+  sfixed64 blocks=13;
+  uint32 flag=14;
+  uint32 err=15;
+}
+
+message HelloDir {
+   uint64 fh=1;
+}
+message HelloOpendir {
+  int64 dir=1;
+}
+
+message HelloDirent{
+  uint64 ino=1;
+  string name=2;
+}
+
+message HelloMkdirReply{
+  uint32 ret=1;
+  uint32 err=2;
+}
+
+message HelloMknodRequest{
+   string path=1;
+   uint32 mode=2;
+   uint32 dev=3;
+ }
+

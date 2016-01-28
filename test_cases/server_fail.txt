@@ -1,0 +1,3 @@
+I am server and i am going to crash this time
+I am going to read and write on cache even if server fails
+When server is back up i am going to talk to it

@@ -1,0 +1,3 @@
+This is my original server file
+I am client 1 and i an going to read/write to my cache
+This shows my disconnected operation

@@ -1,0 +1,3 @@
+This file is to check which client wins
+I am client 2 and my timeout is 40 seconds
+Thus i am going to win this time, as last writer wins
